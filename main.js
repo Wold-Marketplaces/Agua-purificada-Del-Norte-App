@@ -82,10 +82,40 @@ addressInput.addEventListener('input', checkOrderValidation);
 
 // Request Web Link
 if (btnRequestWeb) {
-    btnRequestWeb.addEventListener('click', () => {
-        const WHATSAPP_NUMBER = "5491134724532";
-        const message = encodeURIComponent("¡Hola! ¿Me pasarías el link de la app web para poder compartirte mi ubicación exacta por GPS y hacer el pedido?");
-        window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, '_blank');
+    btnRequestWeb.addEventListener('click', async () => {
+        const link = "https://wold-marketplaces.github.io/Agua-purificada-Del-Norte-App/";
+        
+        try {
+            await navigator.clipboard.writeText(link);
+            // Cambiar texto del botón temporalmente
+            const originalText = btnRequestWeb.innerHTML;
+            btnRequestWeb.innerHTML = '<i class="fas fa-check" style="font-size: 1.2em;"></i> ¡Copiado!';
+            btnRequestWeb.style.background = '#128c7e';
+            
+            setTimeout(() => {
+                btnRequestWeb.innerHTML = originalText;
+                btnRequestWeb.style.background = '#25D366';
+            }, 2000);
+        } catch (err) {
+            // Fallback para navegadores que no soportan clipboard API
+            const textArea = document.createElement('textarea');
+            textArea.value = link;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            
+            const originalText = btnRequestWeb.innerHTML;
+            btnRequestWeb.innerHTML = '<i class="fas fa-check" style="font-size: 1.2em;"></i> ¡Copiado!';
+            btnRequestWeb.style.background = '#128c7e';
+            
+            setTimeout(() => {
+                btnRequestWeb.innerHTML = originalText;
+                btnRequestWeb.style.background = '#25D366';
+            }, 2000);
+        }
     });
 }
 

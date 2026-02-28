@@ -13,6 +13,7 @@
     --border: rgba(255, 255, 255, 0.6);
     --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 10px 25px -5px rgba(12, 165, 233, 0.15);
+    --logo-size: clamp(110px, 26vw, 160px);
 }
 
 * {
@@ -65,16 +66,14 @@ body {
 }
 
 .logo-container {
-    width: 120px;
-    height: 120px;
+    width: var(--logo-size);
+    height: var(--logo-size);
     margin: 0 auto 15px;
     border-radius: 50%;
     overflow: hidden;
-    border: 4px solid var(--primary);
-    /* Borde azul para definir el círculo */
+    border: none;
     box-shadow: 0 8px 25px rgba(12, 165, 233, 0.25);
-    background: #ffffff;
-    /* Fondo blanco sólido */
+    background: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,9 +82,12 @@ body {
 .logo {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    background-color: #ffffff;
-    /* Asegurarse de que el logo en sí tenga fondo blanco */
+    object-fit: cover;
+    object-position: center;
+    /* Usamos contain para ver el logo completo sin cortes */
+    display: block;
+    transform: scale(1.12);
+    /* Zoom para que el logo llene más el círculo */
 }
 
 h1 {

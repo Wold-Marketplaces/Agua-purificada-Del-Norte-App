@@ -16,6 +16,7 @@ const btnLocation = document.getElementById('btnLocation');
 const locationStatus = document.getElementById('locationStatus');
 const itemsCount = document.getElementById('itemsCount');
 const btnRequestWeb = document.getElementById('btnRequestWeb');
+const btnDownloadApp = document.getElementById('btnDownloadApp');
 
 // Render products
 function renderProducts() {
@@ -84,14 +85,14 @@ addressInput.addEventListener('input', checkOrderValidation);
 if (btnRequestWeb) {
     btnRequestWeb.addEventListener('click', async () => {
         const link = "https://wold-marketplaces.github.io/Agua-purificada-Del-Norte-App/";
-        
+
         try {
             await navigator.clipboard.writeText(link);
             // Cambiar texto del botón temporalmente
             const originalText = btnRequestWeb.innerHTML;
             btnRequestWeb.innerHTML = '<i class="fas fa-check" style="font-size: 1.2em;"></i> ¡Copiado!';
             btnRequestWeb.style.background = '#128c7e';
-            
+
             setTimeout(() => {
                 btnRequestWeb.innerHTML = originalText;
                 btnRequestWeb.style.background = '#25D366';
@@ -106,14 +107,51 @@ if (btnRequestWeb) {
             textArea.select();
             document.execCommand('copy');
             document.body.removeChild(textArea);
-            
+
             const originalText = btnRequestWeb.innerHTML;
             btnRequestWeb.innerHTML = '<i class="fas fa-check" style="font-size: 1.2em;"></i> ¡Copiado!';
             btnRequestWeb.style.background = '#128c7e';
-            
+
             setTimeout(() => {
                 btnRequestWeb.innerHTML = originalText;
                 btnRequestWeb.style.background = '#25D366';
+            }, 2000);
+        }
+    });
+}
+
+// Download App Link
+if (btnDownloadApp) {
+    btnDownloadApp.addEventListener('click', async () => {
+        const link = "https://www.mediafire.com/file/oucqqe3xuc1my6t/Agua_purificada_Del_Norte.apk/file";
+
+        try {
+            await navigator.clipboard.writeText(link);
+            const originalText = btnDownloadApp.innerHTML;
+            btnDownloadApp.innerHTML = '<i class="fas fa-check" style="font-size: 1.2em;"></i> ¡Copiado!';
+            btnDownloadApp.style.background = '#004494';
+
+            setTimeout(() => {
+                btnDownloadApp.innerHTML = originalText;
+                btnDownloadApp.style.background = '#0056b3';
+            }, 2000);
+        } catch (err) {
+            const textArea = document.createElement('textarea');
+            textArea.value = link;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+
+            const originalText = btnDownloadApp.innerHTML;
+            btnDownloadApp.innerHTML = '<i class="fas fa-check" style="font-size: 1.2em;"></i> ¡Copiado!';
+            btnDownloadApp.style.background = '#004494';
+
+            setTimeout(() => {
+                btnDownloadApp.innerHTML = originalText;
+                btnDownloadApp.style.background = '#0056b3';
             }, 2000);
         }
     });
